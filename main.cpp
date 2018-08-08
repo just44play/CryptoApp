@@ -35,17 +35,13 @@ void generateRandomAlphabet()
     char z = 'a';
     for_each(alph.begin(), alph.end(), [&](auto &i){ i=z++; });
 
-    for (auto a : alph)
-        std::cout << a << std::endl;
-
     std::cout << std::endl;
     int m = 25;
     int randNum = 0;
-    for (int i = 0; i < 26; i++) {
-        randNum = generateRandomNumber(0,m);
-        m--;
-        randAlph[i] = alph[randNum];
-        alph.erase(alph.begin()+randNum);
-    }
+
+    for_each(randAlph.begin(), randAlph.end(), [&](auto &i){ randNum = generateRandomNumber(0,m);
+                                                             m--;
+                                                             i = alph[randNum];
+                                                             alph.erase(alph.begin()+randNum); });
 }
 
